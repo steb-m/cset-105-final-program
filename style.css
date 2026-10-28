@@ -1,3 +1,42 @@
-.done{
-    text-decoration: line-through;
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+html{
+    background-color: #5A7D7C;
+    flex-shrink: 1;
+}
+body{
+}
+h1, p{
+    text-align: center;   
+    margin: auto;
+    margin-top: 5%;
+    width: fit-content;
+    padding: 15px 30px;
+    background-color: #232C33;
+    border-radius: 50px; 
+    font-family: "Chewy";
+    color:#A0C1D1;
+    font-weight: 50;
+}
+div.container{
+    display: flex;
+    flex-direction: column;
+    text-align: center;
+}
+
+div.list{
+
+}
+button{
+
+    margin-top: 15px;
+    text-decoration: none;
+    color:orangered;
+    background-color: #232C33;
+    border: none;
+    border-radius: 50px;
+    cursor:pointer;
 }
