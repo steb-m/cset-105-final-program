@@ -5,8 +5,28 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Grocery List Manager!</title>
     <link rel="stylesheet" href="style.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Chewy&display=swap" rel="stylesheet">
 </head>
 <body>
-    
+    <h1><img src="Images/GroceryListManager.gif" alt="Grocery List Manager"></h1>
+    <div class="container">
+        <div class="list">
+            <h1 class="subText">
+                <label for="purchase">Enter an item you want to purchase:</label>
+                <textarea id="text" name="text"></textarea>
+            </h1>
+            <button type="button" onclick="addToCart()"><p>submit</p></button>
+            <button type="button" onclick="purchased()"><p>purchase</p></button>
+            <button type="button" onclick="purchased()"><p>show purchased</p></button>
+            <button type="button" onclick="purchased()"><p>show not purchased</p></button>
+
+        </div>
+        <ul id="ul">
+            
+        </ul>
+    </div>
+    <script src="script.js"></script>
 </body>
 </html>
