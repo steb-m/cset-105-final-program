@@ -7,7 +7,13 @@ html{
     background-color: #5A7D7C;
     flex-shrink: 1;
 }
-body{
+h1.subText {
+    display:flex;
+    flex-direction: column;
+}
+textarea{
+    font-family: Calibri;
+    font-size: 18px;
 }
 h1, p{
     text-align: center;   
@@ -25,18 +31,23 @@ div.container{
     display: flex;
     flex-direction: column;
     text-align: center;
+    vertical-align: middle;
 }
 
 div.list{
-
+    display: flex;
+    flex-direction: column;
 }
 button{
-
-    margin-top: 15px;
-    text-decoration: none;
-    color:orangered;
-    background-color: #232C33;
+    background-color: transparent;
     border: none;
-    border-radius: 50px;
-    cursor:pointer;
+    cursor: pointer;
+}
+ul.buttons{
+    margin-top: 15px;
+    list-style-type: none;
+    display: flex;
+    flex-direction: row;
+    gap:50px;
+    justify-content: center;
 }

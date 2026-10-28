@@ -15,14 +15,16 @@
         <div class="list">
             <h1 class="subText">
                 <label for="purchase">Enter an item you want to purchase:</label>
-                <textarea id="text" name="text"></textarea>
+                <textarea id="text" name="text" placeholder="Enter item here.    "></textarea>
             </h1>
-            <button type="button" onclick="addToCart()"><p>submit</p></button>
-            <button type="button" onclick="purchased()"><p>show purchased</p></button>
-            <button type="button" onclick="purchased()"><p>show not purchased</p></button>
-
+            <ul class="buttons">
+                <li><button type="button" onclick="addToCart()"><p>Add To Cart</p></button></li>
+                <li><button type="button" onclick="renderList(true)"><p>Show Purchased</p></button></li>
+                <li><button type="button" onclick="renderList(false)"><p>Show Unpurchased</p></button></li>
+                <li><button type="button" onclick="clearList()"><p>Clear List</p></button></li>
+            </ul>
         </div>
-        <div id="div">
+        <div id="list-container">
             <ul id="ul">
                 
             </ul>

@@ -1,73 +1,82 @@
 class Item {
-    constructor(name, addedToCart = false) {
+    constructor(name, purchased = false) {
         this.name = name;
-        this.addedToCart = addedToCart;
+        this.purchased = purchased;
     }
 }
 
-let products = []
-let i = 0;
-let strikethrough = 0;
+const products = [];
 
 function addToCart() {
     const textElement = document.getElementById('text');
     const ul = document.getElementById('ul');
     if (!textElement || !ul) return;
 
-    const item = textElement.value.trim();
-    if (!item) return;
+    let itemName = textElement.value.trim();
+    if (!itemName) return;
 
-    console.log(item);
-    let li = document.createElement('li');
+    let product = new Item(itemName, false);
+    products.push(product);
 
-    // this is all styles;
-    li.style.cursor = 'pointer';
-    li.style.fontSize = "200%"; 
-    li.style.fontFamily = "Chewy"; 
-    li.style.fontWeight = 50;
+    let li = addClickEvent(product);
 
-    // add click event listener
-    li.addEventListener('click', (event) => {
-        if (strikethrough == 0) {
-            strikethrough++;
-            event.target.style.textDecoration = 'line-through';
-        } else {
-            strikethrough--;
-            event.target.style.textDecoration = 'none';
-        }
-    })
-
-    // add new li to html
-    li.textContent = item;
     ul.appendChild(li);
-    let newProduct = new Item(item, true)
-    products.push(newProduct);
+    textElement.value = '';
+    textElement.focus();
 }
 
-function showPurchased() {
-    let newUL = document.createElement('ul')
-    for (const item of products) {
-        if (item.addedToCart) {
-            newUL.innerHTML += `<li>${item.name}</li>`
-        }
+function addClickEvent(product) {
+    let item = document.createElement('li');
+    item.textContent = product.name;
+    item.style.cursor = 'pointer';
+    item.style.fontSize = '200%';
+    item.style.fontFamily = 'Chewy';
+    if (product.purchased) {
+        item.style.textDecoration = 'line-through';
     }
 
-    let ul = document.getElementById('div').getElementsByTagName('ul')[0];
-    ul.remove();
-    ul.appendChild(newUL);
-
+    item.addEventListener('click', () => {
+        product.purchased = !product.purchased;
+        item.style.textDecoration = product.purchased ? 'line-through' : 'none';
+    });
+    return item;
 }
 
-function showNotPurchased() {
-    let newUL = document.createElement('ul')
-    for (const item of products) {
-        if (!item.addedToCart) {
-            newUL.innerHTML += `<li>${item.name}</li>`
-        }
+function renderList(isPurchased) {
+    const container = document.getElementById('list-container');
+    if (!container) return;
+
+    let newUL = document.createElement('ul');
+    newUL.id = 'ul';
+
+    if (products.length === 0) {
+        let msg = document.createElement('li');
+        msg.textContent = 'No items in products!';
+        msg.style.fontFamily = 'Chewy';
+        msg.style.fontSize = '200%';
+        newUL.appendChild(msg);
+        container.innerHTML = '';
+        container.appendChild(newUL);
+        return;
     }
 
-    let ul = document.getElementById('div').getElementsByTagName('ul')[0];
-    ul.remove();
-    ul.appendChild(newUL);
+    const filtered = products.filter(item => item.purchased === isPurchased);
 
+    filtered.forEach(item => {
+        let li = addClickEvent(item);
+        newUL.appendChild(li);
+    });
+
+    container.innerHTML = '';
+    container.appendChild(newUL);
+}
+
+function clearList() {    
+    const ul = document.getElementById('ul');
+    if (ul) {
+        ul.innerHTML = '';
+    } else {
+        const container = document.getElementById('list-container');
+        if (container) container.innerHTML = '<ul id="ul"></ul>';
+    }
 }
