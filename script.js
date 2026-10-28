@@ -8,6 +8,10 @@ class Item {
 let products = new Item(4);
 
 function addToCart() {
-    let ul = document.body.getElementsByTagName("ul")[0];
+    let item = document.getElementById('text').textContent;
+    let ul = document.getElementById("ul");
+    let li = document.createElement('li');
+    li.innerHTML = `${item}`
+    
     
 }
